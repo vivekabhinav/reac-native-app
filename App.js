@@ -1,38 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
 
-  const [name,setName] = useState('Abhinav')
-  const [person, setPerson] = useState({name: 'Vivek', age: 21})
+  const [people, setPeople] = useState(
+    [
+      { name: 'Abhinav', key: '1' },
+      { name: 'Vivek', key: '2' },
+      { name: 'Vaibhav', key: '3' },
+      { name: 'Tanmaya', key: '4' },
+      { name: 'Muazzam', key: '5' },
+      { name: 'Abhi', key: '6' },
+      { name: 'Ani', key: '7' },
+      { name: 'Abhinav', key: '8' },
+      { name: 'Aniket', key: '9' },
+      { name: 'Harshit', key: '10' },
+      { name: 'Ankit', key: '11' },
+      { name: 'vivek', key: '12' },
+      { name: 'Abhinav', key: '13' },
+      { name: 'Niket', key: '14' },
+      { name: 'Aarshit', key: '15' },
 
-  const [age,setAge] = useState('22')
-
-
-  const clickHandler = () => {
-    setName('Tripathi')
-  }
+    ]
+  )
 
   return (
     <View style={styles.container}>
-      <Text>My name is {name}</Text>
-      <Text>His name is {person.name} and his age is  {age}</Text>
-      <TextInput 
-      style={styles.input}
-      placeholder = 'enter name'
-      onChangeText = {(val) => setName(val)}
-      />
+    <ScrollView>
+      {
+        people.map((item) => {
+          return (
+            <View key={item.key}>
+              <Text style = {styles.item}>{item.name}</Text>
+            </View>
+          )
+        }
+        )}
+        </ScrollView>
 
-      <TextInput 
-      keyboardType = 'numeric'
-      style={styles.input}
-      placeholder = 'enter age eg 88'
-      onChangeText = {(val) => setAge(val)}
-      />
-      <Button title = 'update state'  onPress = {clickHandler}/>
     </View>
-    
+
   );
 }
 
@@ -44,12 +52,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  boxStyle : {
+  boxStyle: {
     width: 50, height: 50, backgroundColor: 'powderblue'
   },
   input: {
     border: '1px solid',
     borderColor: 'blue',
     padding: 8,
+  },
+  item: {
+    marginTop: 24, 
+    padding: 30, 
+    height: 30 ,
+    backgroundColor: 'pink',
+    fontSize: 24,
   }
 });
